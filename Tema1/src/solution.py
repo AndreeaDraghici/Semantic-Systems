@@ -1,102 +1,93 @@
-import turtle  # Importam modulul turtle pentru a desena
-
-
-# Functia pentru desenarea unui patrat (baza casei)
-def draw_square(t, size) :
+# Functia pentru desenarea unui patrat (folosit ca baza a casei)
+def draw_square(t, size):
     """
-    Deseneaza un patrat cu laturile de dimensiunea specificata.
+    Deseneaza un patrat cu dimensiunea specificata.
 
     Args:
         t (Turtle): Obiectul Turtle care deseneaza.
-        size (int): Lungimea laturii patratului.
+        size (int): Dimensiunea laturii patratului.
     """
-    for _ in range(4) :  # Repetam de 4 ori pentru cele 4 laturi
-        t.forward(size)  # Mergem inainte cu lungimea specificata
-        t.left(90)  # Ne rotim la stanga cu 90 de grade pentru a forma coltul
+    for _ in range(4):  # Repetam de 4 ori pentru a desena un patrat
+        t.forward(size)  # Mergem inainte cu dimensiunea specificata
+        t.left(90)  # Rotim la stanga 90 de grade pentru a forma colturile
 
-
-# Functia pentru desenarea acoperisului (triunghi)
-def draw_triangle(t, size) :
+# Functia pentru desenarea unui triunghi (folosit ca acoperisul casei)
+def draw_triangle(t, size):
     """
-    Deseneaza un triunghi echilateral cu laturile de dimensiunea specificata.
+    Deseneaza un triunghi echilateral cu latura specificata.
 
     Args:
         t (Turtle): Obiectul Turtle care deseneaza.
-        size (int): Lungimea laturii triunghiului.
+        size (int): Dimensiunea laturii triunghiului.
     """
-    for _ in range(3) :  # Repetam de 3 ori pentru cele 3 laturi
-        t.forward(size)  # Mergem inainte cu lungimea specificata
-        t.left(120)  # Ne rotim la stanga cu 120 de grade pentru triunghi
+    for _ in range(3):  # Repetam de 3 ori pentru a desena un triunghi
+        t.forward(size)  # Mergem inainte cu dimensiunea specificata
+        t.left(120)  # Rotim la stanga 120 de grade pentru a forma triunghiul echilateral
 
-
-# Functia pentru desenarea unei case (patrat + acoperis)
-def draw_house(t, size) :
+# Functia pentru desenarea unei case (un patrat pentru baza + un triunghi pentru acoperis)
+def draw_house(t, size):
     """
-    Deseneaza o casa formata dintr-un patrat (baza) si un triunghi (acoperis).
+    Deseneaza o casa compusa dintr-un patrat (baza) si un triunghi (acoperis).
 
     Args:
         t (Turtle): Obiectul Turtle care deseneaza.
-        size (int): Dimensiunea laturii bazei casei.
+        size (int): Dimensiunea casei (latura patratului).
     """
-    # Desenam baza casei
-    t.fillcolor("lightblue")  # Setam culoarea de umplere pentru casa
-    t.begin_fill()  # Incepem umplerea
-    draw_square(t, size)  # Desenam baza casei (patrat)
-    t.end_fill()  # Finalizam umplerea
+    t.fillcolor("lightblue")  # Setam culoarea de umplere la albastru deschis pentru casa
+    t.begin_fill()  # Incepem umplerea formei patratului
+    draw_square(t, size)  # Desenam baza patrata a casei
+    t.end_fill()  # Terminam umplerea
 
-    # Mutam Turtle deasupra casei pentru acoperis
-    t.left(90)  # Rotim Turtle la stanga cu 90 de grade
-    t.forward(size)  # Mutam Turtle deasupra casei
-    t.right(90)  # Rotim Turtle la dreapta pentru a incepe acoperisul
+    # Mutam turtle la partea de sus a patratului pentru a incepe desenarea acoperisului
+    t.left(90)
+    t.forward(size)
+    t.right(90)
 
-    # Desenam acoperisul casei (triunghi echilateral)
-    t.fillcolor("brown")  # Setam culoarea de umplere pentru acoperis
-    t.begin_fill()  # Incepem umplerea
-    draw_triangle(t, size)  # Desenam acoperisul casei
-    t.end_fill()  # Finalizam umplerea
-
+    t.fillcolor("brown")  # Setam culoarea de umplere la maro pentru acoperis
+    t.begin_fill()  # Incepem umplerea formei triunghiului
+    draw_triangle(t, size)  # Desenam acoperisul triunghiular
+    t.end_fill()  # Terminam umplerea
 
 # Functia pentru desenarea unui copac complet (trunchi + frunze)
-def draw_tree(t, size) :
+def draw_tree(t, size):
     """
-    Deseneaza un copac cu un trunchi dreptunghiular si frunze circulare.
+    Deseneaza un copac compus dintr-un trunchi dreptunghiular si un cerc (frunzele).
 
     Args:
         t (Turtle): Obiectul Turtle care deseneaza.
-        size (int): Inaltimea copacului (dimensiunea trunchiului si frunzelor).
+        size (int): Dimensiunea copacului.
     """
-    # Desenam trunchiul copacului
-    t.fillcolor("#8B4513")  # Setam culoarea de umplere pentru trunchi (maro)
-    t.begin_fill()  # Incepem umplerea
-    for _ in range(2) :  # Repetam de 2 ori pentru a desena dreptunghiul
-        t.forward(size * 0.2)  # Latura scurta a trunchiului
+    # Desenam trunchiul copacului (un dreptunghi maro)
+    t.fillcolor("#8B4513")  # Setam culoarea de umplere la maro pentru trunchi
+    t.begin_fill()  # Incepem umplerea formei dreptunghiului
+    for _ in range(2):  # Repetam de 2 ori pentru a desena un dreptunghi
+        t.forward(size * 0.2)  # Partea scurta a dreptunghiului (latimea trunchiului)
         t.left(90)  # Rotim la stanga 90 de grade
-        t.forward(size)  # Latura lunga a trunchiului
-        t.left(90)  # Rotim la stanga din nou
-    t.end_fill()  # Finalizam umplerea
+        t.forward(size)  # Partea lunga a dreptunghiului (inaltimea trunchiului)
+        t.left(90)  # Rotim din nou la stanga
+    t.end_fill()  # Terminam umplerea
 
-    # Mutam Turtle la pozitia unde vor fi frunzele
-    t.penup()  # Ridicam pixul pentru a nu desena
-    t.left(90)  # Rotim Turtle la stanga
-    t.forward(size)  # Mutam Turtle deasupra trunchiului
-    t.right(90)  # Rotim Turtle la dreapta
+    # Mutam turtle in pozitia de unde vor fi desenate frunzele
+    t.penup()  # Ridicam stiloul pentru a nu desena in timp ce ne mutam
+    t.left(90)  # Rotim turtle in sus
+    t.forward(size)  # Mutam turtle deasupra trunchiului
+    t.right(90)  # Rotim turtle la dreapta pentru a pregati desenarea frunzelor
 
-    # Mutam Turtle mai sus si inainte pentru a centra frunzele
-    t.forward(size * 0.1)  # Mutam Turtle usor inainte
-    t.right(90)  # Rotim Turtle la dreapta
-    t.forward(size * 0.25)  # Mutam Turtle sus pentru centru
-    t.left(90)  # Rotim Turtle inapoi
+    # Mutam turtle putin mai sus si inainte pentru a centra frunzele
+    t.forward(size * 0.1)  # Mutam turtle usor inainte
+    t.right(90)  # Rotim turtle la dreapta
+    t.forward(size * 0.25)  # Mutam turtle in sus pentru a centra frunzele
+    t.left(90)  # Rotim turtle inapoi la pozitia normala
 
-    # Desenam frunzele (cercul deasupra trunchiului)
-    t.pendown()  # Coboram pixul pentru a desena
-    t.fillcolor("green")  # Setam culoarea de umplere pentru frunze
-    t.begin_fill()  # Incepem umplerea
-    t.circle(size * 0.5)  # Desenam cercul (frunzele)
-    t.end_fill()  # Finalizam umplerea
+    # Desenam frunzele copacului (un cerc verde)
+    t.pendown()  # Coboram stiloul pentru a incepe desenarea
+    t.fillcolor("green")  # Setam culoarea de umplere la verde pentru frunze
+    t.begin_fill()  # Incepem umplerea cercului
+    t.circle(size * 0.5)  # Desenam cercul care reprezinta frunzele
+    t.end_fill()  # Terminam umplerea
 
-
-# Functia pentru desenarea soarelui
-def draw_sun(t, x, y, size) :
+# Functia pentru desenarea soarelui cu raze
+def draw_sun(t, x, y, size):
     """
     Deseneaza un soare la pozitia specificata, format dintr-un cerc si raze.
 
@@ -104,36 +95,35 @@ def draw_sun(t, x, y, size) :
         t (Turtle): Obiectul Turtle care deseneaza.
         x (int): Coordonata x a pozitiei soarelui.
         y (int): Coordonata y a pozitiei soarelui.
-        size (int): Dimensiunea soarelui (raza cercului).
+        size (int): Raza soarelui (cercul).
     """
-    # Mergem la pozitia specificata pentru soare
-    t.penup()  # Ridicam pixul pentru a nu desena
-    t.goto(x, y)  # Mutam Turtle la coordonatele specificate
-    t.pendown()  # Coboram pixul pentru a desena
+    # Mutam turtle la pozitia specificata pentru soare
+    t.penup()  # Ridicam stiloul pentru a nu desena in timpul mutarii
+    t.goto(x, y)  # Mutam turtle la coordonatele x si y specificate
+    t.pendown()  # Coboram stiloul pentru a incepe desenarea soarelui
 
     # Desenam cercul pentru soare
-    t.fillcolor("yellow")  # Setam culoarea de umplere pentru soare
-    t.begin_fill()  # Incepem umplerea
-    t.circle(size)  # Desenam cercul (soarele)
-    t.end_fill()  # Finalizam umplerea
+    t.fillcolor("yellow")  # Setam culoarea de umplere la galben pentru soare
+    t.begin_fill()  # Incepem umplerea cercului
+    t.circle(size)  # Desenam cercul care reprezinta soarele
+    t.end_fill()  # Terminam umplerea
 
     # Desenam razele soarelui
-    t.pencolor("yellow")  # Setam culoarea stiloului pentru raze
-    t.penup()  # Ridicam pixul
-    for _ in range(12) :  # Repetam pentru 12 raze
-        t.goto(x, y + size)  # Pozitionam Turtle pentru raza
-        t.pendown()  # Coboram pixul pentru a desena
-        t.forward(size + 20)  # Desenam raza
-        t.penup()  # Ridicam pixul inapoi
+    t.pencolor("yellow")  # Setam culoarea stiloului la galben pentru raze
+    t.penup()  # Ridicam stiloul din nou pentru a ne pozitiona pentru raze
+    for _ in range(12):  # Desenam 12 raze in jurul soarelui
+        t.goto(x, y + size)  # Mutam turtle la partea de sus a soarelui
+        t.pendown()  # Coboram stiloul pentru a desena raza
+        t.forward(size + 20)  # Desenam raza in afara cercului
+        t.penup()  # Ridicam stiloul dupa ce am desenat raza
         t.goto(x, y)  # Revenim la centrul soarelui
-        t.right(30)  # Rotim Turtle pentru urmatoarea raza
+        t.right(30)  # Rotim turtle cu 30 de grade pentru urmatoarea raza
 
-    # Resetam culoarea stiloului la negru (sau alta culoare dorita)
+    # Resetam culoarea stiloului la negru pentru desene viitoare
     t.pencolor("black")
 
-
-# Functia pentru desenarea unui munte (triunghi mare)
-def draw_mountain(t, x, y, size) :
+# Functia pentru desenarea unui munte cu varf de zapada
+def draw_mountain(t, x, y, size):
     """
     Deseneaza un munte sub forma de triunghi la coordonatele specificate.
 
@@ -141,71 +131,75 @@ def draw_mountain(t, x, y, size) :
         t (Turtle): Obiectul Turtle care deseneaza.
         x (int): Coordonata x a bazei muntelui.
         y (int): Coordonata y a bazei muntelui.
-        size (int): Dimensiunea laturii muntelui (triunghiului).
+        size (int): Lungimea laturii muntelui (triunghiului).
     """
-    t.penup()  # Ridicam pixul
-    t.goto(x, y)  # Mergem la pozitia specificata
-    t.pendown()  # Coboram pixul pentru a desena
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
 
-    # Desenam muntele ca un triunghi mare
-    t.fillcolor("grey")  # Setam culoarea de umplere pentru munte
-    t.begin_fill()  # Incepem umplerea
-    for _ in range(3) :  # Repetam de 3 ori pentru triunghi
-        t.forward(size)  # Desenam o latura a triunghiului
-        t.left(120)  # Rotim Turtle pentru urmatoarea latura
-    t.end_fill()  # Finalizam umplerea
+    # Desenam muntele principal ca un triunghi gri
+    t.fillcolor("grey")  # Setam culoarea de umplere la gri pentru munte
+    t.begin_fill()  # Incepem umplerea triunghiului
+    for _ in range(3):  # Desenam cele 3 laturi ale triunghiului
+        t.forward(size)
+        t.left(120)
+    t.end_fill()  # Terminam umplerea
 
-
-# Functia pentru desenarea unui lac (oval)
-def draw_lake(t, x, y, width, height) :
-    """
-    Deseneaza un lac sub forma de oval la coordonatele specificate.
-
-    Args:
-        t (Turtle): Obiectul Turtle care deseneaza.
-        x (int): Coordonata x a centrului lacului.
-        y (int): Coordonata y a centrului lacului.
-        width (int): Latimea lacului (raza mica).
-        height (int): Inaltimea lacului (raza mare).
-    """
-    t.penup()  # Ridicam pixul
-    t.goto(x, y)  # Mutam Turtle la pozitia specificata
-    t.pendown()  # Coboram pixul pentru a desena
-    t.fillcolor("blue")  # Setam culoarea de umplere pentru lac
-    t.begin_fill()  # Incepem umplerea
-
-    # Desenam ovalul prin combinarea cercurilor
-    t.setheading(45)  # Setam unghiul pentru a incepe ovalul
-    for _ in range(2) :  # Repetam de 2 ori pentru a desena ovalul
-        t.circle(width, 90)  # Partea rotunda a ovalului
-        t.circle(height, 90)  # Partea lunga a ovalului
-    t.end_fill()  # Finalizam umplerea
-
-
-# Functia pentru desenarea unui nor (format din cercuri suprapuse)
-def draw_cloud(t, x, y, size) :
-    """
-    Deseneaza un nor format din cercuri suprapuse la pozitia specificata.
-
-    Args:
-        t (Turtle): Obiectul Turtle care deseneaza.
-        x (int): Coordonata x a norului.
-        y (int): Coordonata y a norului.
-        size (int): Dimensiunea de baza pentru nor.
-    """
-    t.penup()  # Ridicam pixul
-    t.goto(x, y)  # Mergem la pozitia norului
-    t.pendown()  # Coboram pixul pentru a desena
-
-    # Setam culoarea norului
+    # Desenam varful cu zapada al muntelui
     t.fillcolor("white")
+    t.begin_fill()
+    t.goto(x + size * 0.35, y + size * 0.6)  # Desenam partea stanga a zapezii
+    t.goto(x + size * 0.65, y + size * 0.6)  # Desenam partea dreapta a zapezii
+    t.goto(x + size * 0.5, y + size * 0.85)  # Desenam varful zapezii
+    t.goto(x, y)  # Revenim la baza muntelui
+    t.end_fill()  # Terminam umplerea
 
-    # Desenam primul cerc al norului
+# Functia pentru desenarea unui lac (forma ovala cu reflexii)
+def draw_lake(t, x, y, width, height):
+    """
+    Deseneaza un lac in forma de oval la coordonatele specificate.
+
+    Args:
+        t (Turtle): Obiectul Turtle care deseneaza.
+        x (int): Coordonata x de pornire.
+        y (int): Coordonata y de pornire.
+        width (int): Latimea lacului.
+        height (int): Inaltimea lacului.
+    """
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor("blue")
+    t.begin_fill()
+
+    # Desenam un oval combinand doua arcuri
+    t.setheading(45)
+    for _ in range(2):
+        t.circle(width, 90)
+        t.circle(height, 90)
+    t.end_fill()
+
+# Functia pentru desenarea unui nor cu umbra
+def draw_cloud(t, x, y, size):
+    """
+    Deseneaza un nor la coordonatele specificate, compus din mai multe cercuri.
+
+    Args:
+        t (Turtle): Obiectul Turtle care deseneaza.
+        x (int): Coordonata x de pornire.
+        y (int): Coordonata y de pornire.
+        size (int): Dimensiunea norului (raza cercului de baza).
+    """
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+
+    # Desenam cercurile care formeaza norul
+    t.fillcolor("white")
     t.begin_fill()
     t.circle(size)
     t.end_fill()
 
-    # Desenam al doilea cerc usor in dreapta
     t.penup()
     t.goto(x + size * 0.7, y)
     t.pendown()
@@ -213,7 +207,6 @@ def draw_cloud(t, x, y, size) :
     t.circle(size * 0.8)
     t.end_fill()
 
-    # Desenam al treilea cerc in stanga
     t.penup()
     t.goto(x - size * 0.7, y)
     t.pendown()
@@ -221,51 +214,59 @@ def draw_cloud(t, x, y, size) :
     t.circle(size * 0.6)
     t.end_fill()
 
-
-# Functia pentru desenarea ierbii pe mai multe randuri
-def draw_grass(t, start_x, start_y, width, height) :
+    # Desenam umbra norului
     t.penup()
-    t.goto(start_x, start_y)
+    t.goto(x - size * 0.5, y - size * 0.2)
     t.pendown()
-    t.color("green")
+    t.fillcolor("lightgrey")
+    t.begin_fill()
+    t.circle(size * 0.5)
+    t.end_fill()
 
-    for y_offset in range(0, height, 15) :  # Facem mai multe randuri de iarba
-        for x_offset in range(0, width, 20) :
-            t.penup()
-            t.goto(start_x + x_offset, start_y + y_offset)
-            t.pendown()
-
-            # Fire de iarba de inaltimi variabile si unghiuri diferite
-            grass_height = 10 + (x_offset % 5) * 2  # Inaltime variabila
-            t.left(60 + (x_offset % 10) * 2)  # Unghiuri variabile
-            t.forward(grass_height)
-            t.backward(grass_height)
-            t.right(120 + (x_offset % 10) * 2)
-            t.forward(grass_height)
-            t.backward(grass_height)
-            t.left(60)  # Revenim la unghiul initial
-
-
-# Functia pentru desenarea unei scene complete (o casa si un copac)
-def draw_scene(t, x, y, house_size, tree_size) :
+# Functia pentru desenarea unui plan de iarba (un dreptunghi verde)
+def draw_grass(t, start_x, start_y, width, height):
     """
-    Deseneaza o scena completa cu o casa si un copac la pozitiile specificate.
+    Deseneaza un plan de iarba sub forma de dreptunghi verde.
 
     Args:
         t (Turtle): Obiectul Turtle care deseneaza.
-        x (int): Coordonata x a bazei casei.
-        y (int): Coordonata y a bazei casei.
-        house_size (int): Dimensiunea casei.
+        start_x (int): Coordonata x de pornire.
+        start_y (int): Coordonata y de pornire.
+        width (int): Latimea planului de iarba.
+        height (int): Inaltimea planului de iarba.
+    """
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    t.fillcolor("green")
+    t.begin_fill()
+    for _ in range(2):  # Desenam un dreptunghi repetand de 2 ori
+        t.forward(width)
+        t.left(90)
+        t.forward(height)
+        t.left(90)
+    t.end_fill()
+
+# Functia pentru desenarea unei scene complete (o casa si un copac)
+def draw_scene(t, x, y, house_size, tree_size):
+    """
+    Deseneaza o scena completa, compusa dintr-o casa si un copac.
+
+    Args:
+        t (Turtle): Obiectul Turtle care deseneaza.
+        x (int): Coordonata x pentru pozitionarea scenei.
+        y (int): Coordonata y pentru pozitionarea scenei.
+        house_size (int): Dimensiunea casei (latura).
         tree_size (int): Dimensiunea copacului.
     """
-    # Desenam casa
-    t.penup()  # Ridicam pixul
-    t.goto(x, y)  # Mutam Turtle la pozitia specificata
-    t.pendown()  # Coboram pixul pentru a desena
-    draw_house(t, house_size)  # Desenam casa
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    draw_house(t, house_size)  # Desenam casa la pozitia specificata
 
-    # Desenam copacul langa casa
-    t.penup()  # Ridicam pixul
-    t.goto(x + house_size + 30, y)  # Mutam Turtle pentru copac
-    t.pendown()  # Coboram pixul pentru a desena
+    # Pozitionam copacul la dreapta casei
+    t.penup()
+    t.goto(x + house_size + 30, y)  # Mutam la dreapta casei
+    t.pendown()
     draw_tree(t, tree_size)  # Desenam copacul
