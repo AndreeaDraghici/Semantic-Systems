@@ -1,9 +1,4 @@
-import turtle
-
-from src.solution import draw_scene
-
-def print_hi(name):
-    import turtle
+def print_hi(name) :
     import turtle
 
     # Funcția pentru desenarea unui pătrat (baza casei)
@@ -85,7 +80,8 @@ def print_hi(name):
         t.circle(size)
         t.end_fill()
 
-        # Desenăm razele
+        # Desenăm razele galbene
+        t.pencolor("yellow")  # Setăm culoarea stiloului pentru raze
         t.penup()
         for _ in range(12) :  # 12 raze
             t.goto(x, y + size)
@@ -94,6 +90,44 @@ def print_hi(name):
             t.penup()
             t.goto(x, y)
             t.right(30)  # Ne rotim pentru următoarea rază
+
+        # Resetăm culoarea stiloului la negru sau altă culoare dorită (opțional)
+        t.pencolor("black")
+
+    # Funcția pentru desenarea unui munte (triunghi mare)
+    def draw_mountain(t, x, y, size) :
+        """
+        Desenează un munte sub formă de triunghi la coordonatele specificate
+        """
+        t.penup()
+        t.goto(x, y)
+        t.pendown()
+
+        # Desenăm muntele ca un triunghi mare
+        t.fillcolor("grey")
+        t.begin_fill()
+        for _ in range(3) :
+            t.forward(size)
+            t.left(120)
+        t.end_fill()
+
+    # Funcția pentru desenarea unui lac (oval)
+    def draw_lake(t, x, y, width, height) :
+        """
+        Desenează un lac sub formă de oval alungit la coordonatele (x, y)
+        """
+        t.penup()
+        t.goto(x, y)
+        t.pendown()
+        t.fillcolor("blue")
+        t.begin_fill()
+
+        # Desenăm ovalul prin combinarea cercurilor
+        t.setheading(45)  # Ne rotim pentru a începe ovalul
+        for _ in range(2) :
+            t.circle(width, 90)  # Partea rotundă
+            t.circle(height, 90)  # Partea lungă
+        t.end_fill()
 
     # Funcția pentru desenarea unui peisaj complet
     def draw_scene(t, x, y, house_size, tree_size) :
@@ -114,23 +148,32 @@ def print_hi(name):
 
     # Setup pentru Turtle
     screen = turtle.Screen()
+    screen.setup(width=800, height=600)  # Setăm dimensiunile ferestrei
     screen.bgcolor("skyblue")
     t = turtle.Turtle()
     t.speed(0)  # Viteză maximă pentru desenare
 
-    # Desenăm soarele la coordonatele (-200, 200) cu dimensiunea de 50
-    draw_sun(t, -250, 150, 50)
+    # Desenăm munții în fundal, la coordonate mai mari și centrate
+    draw_mountain(t, -300, -50, 300)  # Primul munte
+    draw_mountain(t, 0, -50, 300)  # Al doilea munte
+    draw_mountain(t, 300, -50, 300)  # Al treilea munte
 
-    # Multiplicăm peisajele cu case și copaci în poziții și dimensiuni diferite
-    start_x = -250
+    # Desenăm soarele centrat la coordonatele (0, 150) cu dimensiunea de 50
+    draw_sun(t, 0, 150, 50)
+
+    # Centrarea caselor și copacilor pe ecran
+    start_x = -150  # Începem de la -150 pentru a centra mai bine casele
     start_y = -150
-    space_between = 200  # Spațiu mai mare între case și copaci
+    space_between = 200  # Spațiu egal între case și copaci
     for i in range(4) :
         draw_scene(t, start_x + i * space_between, start_y, 80, 100)
+
+    # Desenăm un lac în stânga
+    draw_lake(t, -400, -200, 100, 150)  # Lacul sub formă de oval
 
     # Finalizarea desenului
     turtle.done()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' :
     print_hi('PyCharm')
