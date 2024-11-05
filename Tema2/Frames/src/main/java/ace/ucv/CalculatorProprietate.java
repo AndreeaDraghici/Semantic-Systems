@@ -1,6 +1,6 @@
 package ace.ucv;
 
-// Interfața CalculatorProprietate pentru calculul proprietăților
+// Interfața pentru calcularea atributelor dinamice
 interface CalculatorProprietate {
     Object calcul();
 }

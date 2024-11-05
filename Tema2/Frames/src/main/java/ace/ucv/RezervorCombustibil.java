@@ -3,7 +3,7 @@ package ace.ucv;
 import java.util.HashMap;
 import java.util.Map;
 
-// Clasa RezervorCombustibil folosind Pattern-ul Bunch
+// Componentele de tip Agregare pentru  RezervorCombustibil
 class RezervorCombustibil {
     private Map<String, Object> caracteristici;
 

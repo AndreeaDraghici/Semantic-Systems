@@ -3,7 +3,7 @@ package ace.ucv;
 import java.util.HashMap;
 import java.util.Map;
 
-// Clasa Motor folosind Pattern-ul Bunch
+// Componentele de tip Agregare pentru Motor
 class Motor {
     private Map<String, Object> caracteristici;
 

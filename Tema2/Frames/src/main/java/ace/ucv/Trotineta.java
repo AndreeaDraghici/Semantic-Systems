@@ -2,7 +2,6 @@ package ace.ucv;
 
 import java.util.Map;
 
-// Nivelul 3: Clasa Trotineta
 class Trotineta extends VehiculNemotorizat {
     public Trotineta(Map<String, Object> proprietatiInitiale) {
         super(proprietatiInitiale);

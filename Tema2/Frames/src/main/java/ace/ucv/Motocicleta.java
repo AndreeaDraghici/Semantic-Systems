@@ -2,7 +2,7 @@ package ace.ucv;
 
 import java.util.Map;
 
-// Nivelul 3: Clasa Motocicleta
+// Nivelul 4: Clasa Motocicleta
 class Motocicleta extends VehiculMotorizat {
     public Motocicleta(Map<String, Object> proprietatiInitiale) {
         super(proprietatiInitiale);
