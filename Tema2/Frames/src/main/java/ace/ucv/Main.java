@@ -3,10 +3,6 @@ package ace.ucv;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Andreea Draghici on 11/5/2024
- * Name of project: Default (Template) Project
- */
 public class Main {
     public static void main(String[] args) {
         // Definim caracteristicile pentru motor și rezervor
@@ -35,17 +31,17 @@ public class Main {
         proprietatiTrotineta.put("esteElectrica", true);
         Trotineta trotinetaElectrica = new Trotineta(proprietatiTrotineta);
 
-        // Interogări și afișare pentru fiecare vehicul
-        System.out.println("Capacitate rezervor Masina Familie: " + masinaFamilie.obtineValoareProprietate("capacitateRezervor"));
-        System.out.println("Tip combustibil Masina Familie: " + masinaFamilie.obtineValoareProprietate("tipCombustibil"));
-        System.out.println("Putere motor Masina Familie: " + masinaFamilie.obtineValoareProprietate("putereMotor"));
+        // Afișăm toate proprietățile pentru fiecare vehicul
+        System.out.println("Detalii Masina Familie:");
+        masinaFamilie.afiseazaProprietati();
 
-        System.out.println("\nCasca Motocicleta Sport: " + motocicletaSport.obtineValoareProprietate("casca"));
+        System.out.println("\nDetalii Motocicleta Sport:");
+        motocicletaSport.afiseazaProprietati();
 
-        System.out.println("\nTip cadru Bicicleta Mountain: " + bicicletaMountain.obtineValoareProprietate("tipCadru"));
+        System.out.println("\nDetalii Bicicleta Mountain:");
+        bicicletaMountain.afiseazaProprietati();
 
-        System.out.println("\nViteza maxima Trotineta Electrica: " + trotinetaElectrica.obtineValoareProprietate("calculVitezaMaxima"));
-        System.out.println("Este electrica Trotineta Electrica: " + trotinetaElectrica.obtineValoareProprietate("esteElectrica"));
-
+        System.out.println("\nDetalii Trotineta Electrica:");
+        trotinetaElectrica.afiseazaProprietati();
     }
 }

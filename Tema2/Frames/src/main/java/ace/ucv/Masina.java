@@ -2,11 +2,7 @@ package ace.ucv;
 
 import java.util.Map;
 
-/**
- * Created by Andreea Draghici on 11/5/2024
- * Name of project: untitled
- */
-// Nivelul 3: Clasa Masina folosind componente flexibile pentru motor și rezervor
+// Nivelul 3: Clasa Masina
 class Masina extends VehiculMotorizat {
     private Motor motor;
     private RezervorCombustibil rezervor;
