@@ -1,28 +1,40 @@
 package ace.ucv;
 
+
+import java.util.HashMap;
 import java.util.Map;
 
-public abstract class CadruVehicul {
+// Clasa de bază CadruVehicul pentru toate vehiculele
+abstract class CadruVehicul {
     protected String nume;
-    protected Bunch proprietati;
+    protected Map<String, Object> proprietati;
+
+    public CadruVehicul(String nume, Map<String, Object> proprietatiInitiale) {
+        this.nume = nume;
+        this.proprietati = new HashMap<>(proprietatiInitiale);
+    }
 
     public CadruVehicul(String nume) {
         this.nume = nume;
-        this.proprietati = new Bunch();
+        this.proprietati = new HashMap<>();
     }
 
     public void adaugaProprietate(String numeProprietate, Object valoare) {
-        proprietati.addAttribute(numeProprietate, valoare);
+        proprietati.put(numeProprietate, valoare);
     }
 
     public Object obtineValoareProprietate(String numeProprietate) {
-        return proprietati.getAttribute(numeProprietate);
+        Object valoare = proprietati.getOrDefault(numeProprietate, "undefined");
+        if (valoare instanceof CalculatorProprietate) {
+            return ((CalculatorProprietate) valoare).calcul();
+        }
+        return valoare;
     }
 
     public void afiseazaProprietati() {
         System.out.println("Proprietăți pentru " + nume + ":");
-        for (Map.Entry<String, Object> entry : proprietati.getAllAttributes().entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        for (String numeProprietate : proprietati.keySet()) {
+            System.out.println(numeProprietate + ": " + obtineValoareProprietate(numeProprietate));
         }
     }
 }
